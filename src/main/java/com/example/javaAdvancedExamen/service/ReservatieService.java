@@ -5,6 +5,7 @@ import com.example.javaAdvancedExamen.entity.Lokaal;
 import com.example.javaAdvancedExamen.entity.Reservatie;
 import com.example.javaAdvancedExamen.entity.User;
 import com.example.javaAdvancedExamen.exceptions.AlreadyExistsException;
+import com.example.javaAdvancedExamen.exceptions.IllegalReservationException;
 import com.example.javaAdvancedExamen.exceptions.NotFoundEntityException;
 import com.example.javaAdvancedExamen.exceptions.ReservationOverlappingException;
 import com.example.javaAdvancedExamen.repository.LokaalRepository;
@@ -125,12 +126,12 @@ public class ReservatieService {
         LocalDateTime start = reservatie.getStartTijdstip();
         LocalDateTime eind = reservatie.getEindeTijdstip();
 
-        if (start.isAfter(eind)) {//custom exceptie?
-            throw new IllegalArgumentException("Starttijd moet voor eindtijd liggen!");
+        if (start.isAfter(eind)) {
+            throw new IllegalReservationException("Starttijd moet voor eindtijd liggen!");
         }
 
         if (eind.isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("Je mag niet in het verleden reserveren!");
+            throw new IllegalReservationException("Je mag niet in het verleden reserveren!");
         }
     }
 
