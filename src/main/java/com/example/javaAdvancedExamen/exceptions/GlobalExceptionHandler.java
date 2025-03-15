@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {//todo: EXCEPTIONS VERVANGEN WAAR MOGELIJK + CUSTOM TOEVOEGEN
+public class GlobalExceptionHandler {//done! EXCEPTIONS VERVANGEN WAAR MOGELIJK + CUSTOM TOEVOEGEN
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e) {
@@ -20,6 +20,11 @@ public class GlobalExceptionHandler {//todo: EXCEPTIONS VERVANGEN WAAR MOGELIJK 
     }
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> handleNullPointer(NullPointerException e) {
+        return ResponseEntity.badRequest()
+                .body(e.getMessage());
+    }
+    @ExceptionHandler(IllegalReservationException.class)
+    public ResponseEntity<String> handelIllegalReservation(IllegalReservationException e) {
         return ResponseEntity.badRequest()
                 .body(e.getMessage());
     }
