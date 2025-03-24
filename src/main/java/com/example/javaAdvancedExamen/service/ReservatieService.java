@@ -100,7 +100,7 @@ public class ReservatieService {
             throw new AlreadyExistsException("Deze reservatie bestaat al in dit lokaal");
         }
 
-        if (!reservatieRepo.existsByIdAndStartTijdstipBeforeAndEindeTijdstipAfter(
+        if (reservatieRepo.existsByIdAndStartTijdstipAndEindeTijdstipAfter(
                 lokaal.getId(),
                 foundReservatie.getStartTijdstip(),
                 foundReservatie.getEindeTijdstip())) {
