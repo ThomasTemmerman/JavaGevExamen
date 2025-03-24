@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {//done! EXCEPTIONS VERVANGEN WAAR MOGELIJK + CUSTOM TOEVOEGEN
+public class GlobalExceptionHandler {//done: EXCEPTIONS VERVANGEN WAAR MOGELIJK + CUSTOM TOEVOEGEN
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException e) {
